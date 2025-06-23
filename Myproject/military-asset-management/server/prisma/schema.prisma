@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+  role     String
+}
+
+model Purchase {
+  id            Int      @id @default(autoincrement())
+  base          String
+  equipmentType String
+  quantity      Int
+  date          DateTime
+}
+
+model Transfer {
+  id            Int      @id @default(autoincrement())
+  fromBase      String
+  toBase        String
+  equipmentType String
+  quantity      Int
+  date          DateTime
+}
+
+model Assignment {
+  id            Int      @id @default(autoincrement())
+  base          String
+  equipmentType String
+  assignedTo    String
+  quantity      Int
+  date          DateTime
+  status        String
+}
